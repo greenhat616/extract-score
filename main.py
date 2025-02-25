@@ -80,15 +80,15 @@ def get_file_size_score(file_size: int) -> float:
 
 # 路径深度评分
 def get_path_depth_score(file_path: str) -> float:
-    depth = len(file_path.split('/'))
-    if depth <= 3:
+    depth = len(file_path.split('\\'))
+    if depth <= 4:
         score_ratio = 1.0
-    elif depth <= 5:
-        score_ratio = 0.9
-    elif depth <= 7:
+    elif depth <= 6:
         score_ratio = 0.8
+    elif depth <= 8:
+        score_ratio = 0.5
     else:
-        score_ratio = 0.7
+        score_ratio = 0
         
     return score_ratio * SCORE_WEIGHTS['path_depth']
 

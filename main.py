@@ -71,7 +71,10 @@ def get_path_depth_weight(file_path: str) -> float:
 high_priority_folders_globs = [
     '**/OneDrive/**',
     '**/WeChat Files/**',
+    '**/FileRecv/**',
     '**/Tencent Files/**',
+    '**/*Downloads/**',
+    '**/*Download/**',
     '**/文档/**',
     '**/Documents/**',
     '**/Desktop/**',
@@ -84,6 +87,7 @@ low_priority_folders_globs = [
     '**/tmp/**',
     '**/cache/**',
     '**/temp/**',
+    '**/scoop/**',
 ]
 
 

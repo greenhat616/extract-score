@@ -167,9 +167,16 @@ def calc_files_scores(files: list[Item]) -> list[OutputItem]:
     )
 
 OUTPUT_DIR = "output"
+INPUT_FILES_PATH = [
+    "items.json",
+    "items_keiko.json"
+]
+
 if __name__ == "__main__":
-    with open(os.path.join(OUTPUT_DIR, "items.json"), "r") as f:
-        items = [Item(**item) for item in json.load(f)]
-    
-    with open(os.path.join(OUTPUT_DIR, "items_scores.json"), "w", encoding="utf8") as f:
-        json.dump([item.model_dump() for item in calc_files_scores(items)], f, ensure_ascii=False, indent=2)
+    for input_file_path in INPUT_FILES_PATH:
+        print(f"Processing {input_file_path}")
+        with open(os.path.join(OUTPUT_DIR, input_file_path), "r", encoding="utf8") as f:
+            items = [Item(**item) for item in json.load(f)]
+        filename = input_file_path.split(".")[0]
+        with open(os.path.join(OUTPUT_DIR, f"{filename}_scores.json"), "w", encoding="utf8") as f:
+            json.dump([item.model_dump() for item in calc_files_scores(items)], f, ensure_ascii=False, indent=2)
